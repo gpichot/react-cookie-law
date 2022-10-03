@@ -1,5 +1,5 @@
-import { Cookies as ReactCookies } from 'react-cookie';
-import { getExpirationDate } from './helpers';
+import { Cookies as ReactCookies } from "react-cookie";
+import { getExpirationDate } from "./helpers";
 
 export default class Cookies {
   constructor(wholeDomain = false) {
@@ -12,19 +12,19 @@ export default class Cookies {
   }
 
   set(cookie, cookieExpiration) {
-    const optionPath = this.whole_domain ? { path: '/' } : {};
+    const optionPath = this.whole_domain ? { path: "/" } : {};
 
-    if (typeof cookie === 'object') {
+    if (typeof cookie === "object") {
       this.cookies.set(cookie.key, cookie.value, {
         expires: cookieExpiration || getExpirationDate(),
-        ...{ optionPath },
+        ...optionPath,
       });
       return;
     }
 
     this.cookies.set(cookie, true, {
       expires: cookieExpiration || getExpirationDate(),
-      ...{ optionPath },
+      ...optionPath,
     });
   }
 
